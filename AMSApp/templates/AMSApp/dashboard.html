@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title_block %} {{ title }} {% endblock title_block %}
+
+{% block body_block %}
+    <div class="row">
+
+        <div class="col">
+            <div class="col-md">
+                <div class="card border border-primary text-center text-white  mb-3 mt-3" id="my-request">
+                    <div class="card-header">
+                        <h5 class="card-title" style="color: black">Total Requests</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title" style="color: gray"><strong>{{ total_request }}</strong></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="col-md">
+                <div class="card border border-warning text-center text-white  mb-3 mt-3" id="waiting-for-approval">
+                    <div class="card-header">
+                        <h5 class="card-title" style="color: black">Waiting For Approval</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title" style="color: gray"><strong>{{ total_waiting_for_approval|default:"0" }}</strong></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="col-md">
+                <div class="card border border-success text-center text-white  mb-3 mt-3" id="total-approved">
+                    <div class="card-header">
+                        <h5 class="card-title" style="color: black">Total Approved</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title" style="color: gray"><strong>{{ total_approved|default:"0" }}</strong></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="col-md">
+                <div class="card border border-danger text-center text-white  mb-3 mt-3" id="total-rejected">
+                    <div class="card-header">
+                        <h5 class="card-title" style="color: black">Total Rejected</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title" style="color: gray"><strong>{{ total_rejected|default:"0" }}</strong></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <div class="col-md">
+                <table id="all_requests_table" class="table table-bordered table-striped ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Action</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Request ID</th>
+                            <th scope="col">Request Date</th>
+                            <th scope="col">Request Type</th>
+                            <th scope="col">Purpose</th>
+                            <th scope="col">Initiator</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for request in all_requests %}
+                            <tr>
+                                <td> View | Edit | Delete </td>
+                                <td> To-Do </td>
+                                <td>{{ request.id }}</td>
+                                <td>{{ request.request_date }}</td>
+                                <td>{{ request.request_type }}</td>
+                                <td>{{ request.purpose }}</td>
+                                <td>{{ request.requester }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% block js_block %}
+        <script src="{% static 'AMSApp/amsapp_datatables.js' %}"></script>
+    {% endblock js_block %}
+{% endblock body_block %}

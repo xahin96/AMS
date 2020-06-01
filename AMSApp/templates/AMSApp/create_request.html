@@ -1,0 +1,259 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block title_block %} {{ title }} {% endblock title_block %}
+
+{% block body_block %}
+
+<script src="{% static 'AMSApp/jquery.min.js' %}"></script>
+<script src="{% static 'AMSApp/jquery.formset.js' %}"></script>
+
+<div class="container mt-3 mb-3">
+    <form name="myform" method="POST">
+        {% csrf_token %}
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title" style="color: gray"><strong>Create New Request</strong></h3>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="request_type">Request Type</label>
+                            </div>
+                            <div class="col-sm-8">
+                                {{ form.request_type|as_crispy_field }}
+                            </div>
+                        </div>
+                    </div>
+{#                    <div class="col-md-6">#}
+{#                        <div class="form-group row">#}
+{#                            <div class="col-sm-4">#}
+{#                                <label for="ip_required">IP Required</label>#}
+{#                            </div>#}
+{#                            <div class="col-sm-8">#}
+{#                                {{ form.ip_required|as_crispy_field  }}#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div id="dvIPRequired" class="form-group row">#}
+{#                                {{ form_ip_information.management_form }}#}
+{#                                {% for fii in form_ip_information %}#}
+{#                                    <div class="link-formset">#}
+{#                                        <div class="col-sm-3">#}
+{#                                            <label for="ip_address">IP Address</label>#}
+{#                                        </div>#}
+{#                                        <div class="col-sm-4">#}
+{#                                            {{ fii.ip_address  }}#}
+{#                                        </div>#}
+{##}
+{#                                        <div class="col-sm-2">#}
+{#                                            <label for="port">Port</label>#}
+{#                                        </div>#}
+{#                                        <div class="col-sm-3">#}
+{#                                            {{ fii.port  }}#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                {% endfor %}#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="ip_required">IP Required</label>
+                            </div>
+                            <div class="col-sm-8">
+                                {{ form.ip_required|as_crispy_field  }}
+                            </div>
+                        </div>
+                        <div id="dvIPRequired" class="form-group row">
+                                {{ form_ip_information.management_form }}
+                                {% for fii in form_ip_information %}
+{#                                    <div class="link-formset">#}
+{#                                        <div class="col-sm-3">#}
+{#                                            <label for="ip_address">IP Address</label>#}
+{#                                        </div>#}
+{#                                        <div class="col-sm-4">#}
+{#                                            {{ fii.ip_address|as_crispy_field  }}#}
+{#                                        </div>#}
+{##}
+{#                                        <div class="col-sm-2">#}
+{#                                            <label for="port">Port</label>#}
+{#                                        </div>#}
+{#                                        <div class="col-sm-3">#}
+{#                                            {{ fii.port|as_crispy_field  }}#}
+{#                                        </div>#}
+{#                                    </div>#}
+                                    <div class="link-formset">
+                                        {{ fii.as_p }}
+                                    </div>
+                                {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="request_title">Request Title</label>
+                            </div>
+                            <div class="col-sm-8">
+                                {{ form.request_title|as_crispy_field }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="user_required">User Required</label>
+                            </div>
+                            <div class="col-sm-8">
+                                {{ form.user_required|as_crispy_field  }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2">
+                                <label for="name">Name</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ form.name|as_crispy_field  }}
+                            </div>
+
+                            <div class="col-sm-2">
+                                <label for="role">Role</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ form.role|as_crispy_field  }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="requester">Requester</label>
+                            </div>
+                            <div class="col-sm-8">
+                                {{ form.requester|as_crispy_field }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="database_required">Database Required</label>
+                            </div>
+                            <div class="col-sm-8">
+                                {{ form.database_required|as_crispy_field  }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="request_date">Request Date</label>
+                            </div>
+                            <div class="col-sm-8">
+                                {{ form.request_date|as_crispy_field  }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+{#                                <label for="database_required">Database Required</label>#}
+                            </div>
+                            <div class="col-sm-8">
+{#                                {{ form.database_required|as_crispy_field  }}#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="required_date">Required Date</label>
+                            </div>
+                            <div class="col-sm-8">
+                                {{ form.required_date|as_crispy_field  }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+{#                                <label for="database_required">Database Required</label>#}
+                            </div>
+                            <div class="col-sm-8">
+{#                                {{ form.database_required|as_crispy_field  }}#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="purpose">Purpose</label>
+                            </div>
+                            <div class="col-sm-8">
+                                {{ form.purpose|as_crispy_field  }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+{#                                <label for="database_required">Database Required</label>#}
+                            </div>
+                            <div class="col-sm-8">
+{#                                {{ form.database_required|as_crispy_field  }}#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-footer">
+                <div class="row">
+                <div class="form-group col-md-10 mt-2">
+                </div>
+                <div class="form-group col-md-2 mt-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+    <script>
+        $('.link-formset').formset({
+            addText: '<br><h1>Add Contact</h1>',
+            deleteText: 'Remove Contact'
+        });
+    </script>
+
+    {% block js_block %}
+        <script src="{% static 'AMSApp/create_request.js' %}"></script>
+    {% endblock js_block %}
+
+{% endblock body_block %}
