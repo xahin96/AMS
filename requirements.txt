@@ -43,7 +43,7 @@ dask==1.1.4
 db==0.1.1
 decorator==4.4.0
 defusedxml==0.6.0
-distributed==1.26.0
+distributed==2021.10.0
 distro==1.4.0
 Django==3.0.6
 django-cors-headers==3.3.0
